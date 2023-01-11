@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Tags: 标签1 | Suqiu77&#39;s Blog</title>
+        <title>XXencode编码原理 | Suqiu77&#39;s Blog</title>
         <meta name="author" content="suqiu77">
         <meta name="description" content="motto">
         <meta name="keywords" content="">
@@ -134,85 +134,200 @@
 
                     </div>
                     <div id="main">
-                        <div id="archives">
-    
-    <div class="categories-tags">
+                        <div class="article">
+    <div>
+        <h1>XXencode编码原理 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/1/11
+        </span>
         
-        
-        <span>
-            <a href="/tags/%E6%A0%87%E7%AD%BE1/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+        <span class="category">
+            <a href="/categories/%E4%B8%BB%E7%9B%AE%E5%BD%95/">
                 <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
                 </span>
-                标签1
+                主目录
             </a>
         </span>
         
         
-        <span>
-            <a href="/tags/%E6%A0%87%E7%AD%BE2/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                标签2
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/misc/" style="background: #00bcd4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                misc
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/misc/" style="color: #03a9f4">
+                    misc
+                </a>
+            </span>
+            
         </span>
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2022/12/30</div>
-            <a href="/2022/12/30/hello-world/">
-                <h3>标题</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E4%B8%BB%E7%9B%AE%E5%BD%95/">
-                        <span class="icon">
-                            <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                        </span>
-                        主目录
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E6%A0%87%E7%AD%BE1/" style="color: #00a596">
-                            标签1
-                        </a>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E6%A0%87%E7%AD%BE2/" style="color: #ff7d73">
-                            标签2
-                        </a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <p>这里写文章梗概</p>
+<span id="more"></span>
+
+<p>​    XXencode将输入文本以每三个字节为单位进行编码。</p>
+<p>​    这三个字节共有24个Bit，以6bit为单位分为4个组，每个组以十进制来表示所出现的数值只会落在0到63之间。</p>
+<p>​    XXencode所选择的可打印字符是：+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz，一共64个字符。</p>
+<p>​    每60个编码输出（相当于45个输入字节）将输出为独立的一行。</p>
+<p>​    每行的开头会加上长度字符，除了最后一行之外，长度字符都应该是“h”这个字符（<strong>45，刚好是64字符中，第45位’h’字符</strong>）；最后一行的长度字符为剩下的字节数目 在64字符中位置所代表字符。</p>
+<p>​    末尾若不足三个字节则用0补齐。</p>
+<p>​    例：</p>
+<table>
+<thead>
+<tr>
+<th>原始字符</th>
+<th>C</th>
+<th></th>
+<th align="center"></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>a</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>t</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始ASCII码（十进制）</td>
+<td>67</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>97</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>116</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ASCII码（二进制）</td>
+<td>0</td>
+<td>1</td>
+<td align="center">0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>新的十进制数值</td>
+<td>16</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td>54</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>52</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>编码后的XXencode字符</td>
+<td>E</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td>q</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>O</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
     </div>
+    
+    
+    
+    
     
 </div>
 
@@ -241,6 +356,11 @@
         <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
 <script src="/js/functions.js"></script>
 <script src="/js/particlex.js"></script>
+
+    
+    
+    
+    
 
 
     </body>
