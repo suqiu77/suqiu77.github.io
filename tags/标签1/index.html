@@ -18,6 +18,14 @@
         <link rel="stylesheet" href="/css/fonts.min.css">
         <link rel="stylesheet" href="/css/particlex.css">
         
+        <canvas id="fireworks" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 32767"></canvas>
+		<script src="https://cdn.staticfile.org/animejs/3.2.1/anime.min.js"></script>
+		<script src="/js/fireworks.min.js"></script>
+		<canvas id="background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1"></canvas>
+		<script src="/js/background.min.js"></script>
+		<div id="cursor"></div>
+		<link rel="stylesheet" href="/css/cursor.min.css">
+		<script src="/js/cursor.min.js"></script>    
     <meta name="generator" content="Hexo 5.4.2"></head>
     <body>
         <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:2147483647;justify-content:space-between;background:#fff;transition:all 0.3s ease-out;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none">
@@ -140,11 +148,31 @@
         
         
         <span>
-            <a href="/tags/misc/" style="background: #03a9f4">
+            <a href="/tags/misc/" style="background: #ffa2c4">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
                 misc
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/Misc/" style="background: #00bcd4">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                Misc
+            </a>
+        </span>
+        
+        
+        <span>
+            <a href="/tags/StegSolve%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E5%B7%A5%E5%85%B7/" style="background: #ff7d73">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+                </span>
+                StegSolve图片隐写工具
             </a>
         </span>
         
@@ -160,31 +188,11 @@
         
         
         <span>
-            <a href="/tags/%E6%A0%87%E7%AD%BE2/" style="background: #00bcd4">
+            <a href="/tags/%E6%A0%87%E7%AD%BE2/" style="background: #ff7d73">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
                 </span>
                 标签2
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/Misc/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                Misc
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/StegSolve%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E5%B7%A5%E5%85%B7/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                StegSolve图片隐写工具
             </a>
         </span>
         
@@ -223,7 +231,7 @@
                     
                     <span class="tag">
                         
-                        <a href="/tags/%E6%A0%87%E7%AD%BE2/" style="color: #ff7d73">
+                        <a href="/tags/%E6%A0%87%E7%AD%BE2/" style="color: #ffa2c4">
                             标签2
                         </a>
                     </span>
