@@ -168,7 +168,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/ACM/" style="color: #03a9f4">
+                <a href="/tags/ACM/" style="color: #ff7d73">
                     ACM
                 </a>
             </span>
@@ -189,12 +189,36 @@
 <p>c0, c1, c2, c3, c4, c5, c6张。现在要用这些钱来支付K元，至少要用多少张纸币？</p>
 <p>用贪心算法的思想，很显然，每一步尽可能用面值大的纸币即可。在日常生活中我们自然而然也是这么做的。</p>
 <p>在本程序中已经事先将Value按照从小到大的顺序排好。</p>
-<p>···</p>
-<p>#include<iostream><br>#include<algorithm><br>using namespace std;<br>const int N=7;<br>int Count[N]={3,0,2,1,0,3,5};<br>int Value[N]={1,2,5,10,20,50,100};</algorithm></iostream></p>
-<p>int solve(int money)<br>{<br>    int num=0;<br>    for(int i=N-1;i&gt;=0;i–)<br>    {<br>        int c=min(money/Value[i],Count[i]);<br>        money=money-c*Value[i];<br>        num+=c;<br>    }<br>    if(money&gt;0) num=-1;<br>    return num;<br>}</p>
-<p>int main()<br>{<br>    int money;<br>    cin&gt;&gt;money;<br>    int res=solve(money);<br>    if(res!=-1) cout&lt;&lt;res&lt;&lt;endl;<br>    else cout&lt;&lt;”NO”&lt;&lt;endl;</p>
-<p>}</p>
-<p>···</p>
+<pre><code class="C++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N=7; 
+int Count[N]=&#123;3,0,2,1,0,3,5&#125;;
+int Value[N]=&#123;1,2,5,10,20,50,100&#125;;
+
+int solve(int money) 
+&#123;
+    int num=0;
+    for(int i=N-1;i&gt;=0;i--) 
+    &#123;
+        int c=min(money/Value[i],Count[i]);
+        money=money-c*Value[i];
+        num+=c;
+    &#125;
+    if(money&gt;0) num=-1;
+    return num;
+&#125;
+
+int main() 
+&#123;
+    int money;
+    cin&gt;&gt;money;
+    int res=solve(money);
+    if(res!=-1) cout&lt;&lt;res&lt;&lt;endl;
+    else cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;
+
+&#125;
+</code></pre>
 
     </div>
     
