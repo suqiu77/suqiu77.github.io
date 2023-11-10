@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Java结构体排序 | Suqiu77&#39;s Blog</title>
+        <title>Suqiu77&#39;s Blog</title>
         <meta name="author" content="suqiu77">
         <meta name="description" content="你决定灿烂，山无遮，海无拦。">
         <meta name="keywords" content="">
@@ -142,7 +142,7 @@
                     <div id="main">
                         <div class="article">
     <div>
-        <h1>Java结构体排序 </h1>
+        <h1> </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -153,11 +153,11 @@
         </span>
         
         <span class="category">
-            <a href="/categories/ACM/">
+            <a href="/categories/%E8%AF%BE%E7%A8%8B%EF%BC%8Cmysql/">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
                 </span>
-                ACM
+                课程，mysql
             </a>
         </span>
         
@@ -169,15 +169,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/ACM/" style="color: #00bcd4">
-                    ACM
-                </a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/Java/" style="color: #00bcd4">
-                    Java
+                <a href="/tags/mysql/" style="color: #ffa2c4">
+                    mysql
                 </a>
             </span>
             
@@ -186,124 +179,139 @@
     </div>
     
     <div class="content" v-pre>
-        <p>java中的两种结构体排序方法</p>
+        <p>这里记录了一些命令行中的mysql语句</p>
 <span id="more"></span><!--这里之后的内容都会被隐藏-->
 
-<h3 id="一、Comparable"><a href="#一、Comparable" class="headerlink" title="一、Comparable"></a>一、Comparable</h3><p>强行对实现它的每个类的对象进行整体排序，实现此接口的对象列表（和数组）可以通过 Collections.sort 或 Arrays.sort 进行自动排序。</p>
-<h4 id="1-导入模块"><a href="#1-导入模块" class="headerlink" title="1.导入模块"></a>1.导入模块</h4><pre><code class="java">import java.util.Arrays;
+<h3 id="一、连接mysql"><a href="#一、连接mysql" class="headerlink" title="一、连接mysql"></a>一、连接mysql</h3><pre><code class="mysql">`mysql -uroot -p`
 </code></pre>
-<h4 id="2-继承接口comparable-重写compareTo-方法"><a href="#2-继承接口comparable-重写compareTo-方法" class="headerlink" title="2.继承接口comparable+重写compareTo()方法"></a>2.继承接口comparable+重写compareTo()方法</h4><pre><code class="java">class node implements Comparable&lt;node&gt;&#123;
-    int x, y;
-     @Override
-    public int compareTo(node a) &#123;
-        if(this.x == a.x)
-            return this.y - a.y; //按照 y 值从小到大排序
-        else 
-            return this.x - a.x;
-    &#125;
-&#125;
+<p>-u后为用户名，-p后输入密码</p>
+<h3 id="二、常用语句"><a href="#二、常用语句" class="headerlink" title="二、常用语句"></a>二、常用语句</h3><p>1、显示当前数据库服务器中的数据库列表：</p>
+<pre><code class="mysql">SHOW DATABASES;
 </code></pre>
-<h4 id="3-在Main函数中创建node数组并赋值"><a href="#3-在Main函数中创建node数组并赋值" class="headerlink" title="3.在Main函数中创建node数组并赋值"></a>3.在Main函数中创建node数组并赋值</h4><pre><code class="java">node[] arr = new node[n];
-...
+<p>2、建立数据库：</p>
+<pre><code class="mysql">CREATE DATABASE 库名;
+CREATE DATABASE IF NOT EXISTS my_db default charset utf8 COLLATE utf8_general_ci;
 </code></pre>
-<h4 id="4-排序"><a href="#4-排序" class="headerlink" title="4.排序"></a>4.排序</h4><pre><code class="java">Arrays.sort(arr, 0, n);  //排n个数，Arrays.sort(arr)则默认排全部  
+<p>3、建立数据表：</p>
+<pre><code class="mysql">USE 库名;
+CREATE TABLE 表名 (字段名 VARCHAR(20), 字段名 CHAR(1));
+CREATE TABLE student (id INT(4),name VARCHAR(20),sex CHAR(1));
 </code></pre>
-<h6 id="例题：洛古P2240【深基12-例1】部分背包问题"><a href="#例题：洛古P2240【深基12-例1】部分背包问题" class="headerlink" title="#例题：洛古P2240【深基12.例1】部分背包问题"></a>#例题：洛古P2240【深基12.例1】部分背包问题</h6><h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>阿里巴巴走进了装满宝藏的藏宝洞。藏宝洞里面有 $N(N \le 100)$ 堆金币，第 $i$ 堆金币的总重量和总价值分别是 $m_i , v_i (1\le m_i,v_i \le 100)$。阿里巴巴有一个承重量为 $T(T \le 1000)$ 的背包，但并不一定有办法将全部的金币都装进去。他想装走尽可能多价值的金币。所有金币都可以随意分割，分割完的金币重量价值比（也就是单位价格）不变。请问阿里巴巴最多可以拿走多少价值的金币？</p>
-<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>第一行两个整数 $N,T$。</p>
-<p>接下来 $N$ 行，每行两个整数 $m_i,v_i$。</p>
-<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>一个实数表示答案，输出两位小数</p>
-<table>
-<thead>
-<tr>
-<th>样例输入 #1</th>
-<th>样例输出 #1</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>4 50<br>10 60<br>20 100<br>30 120<br>15 45</td>
-<td>240.00</td>
-</tr>
-</tbody></table>
-<h5 id="代码样例："><a href="#代码样例：" class="headerlink" title="代码样例："></a>代码样例：</h5><pre><code class="java">import java.util.Arrays;
-import java.util.Scanner;
+<p>4、删除数据库：</p>
+<pre><code class="mysql">DROP DATABASE 库名;
+</code></pre>
+<p>5、删除数据表：</p>
+<pre><code class="mysql">DROP TABLE 表名;
+</code></pre>
+<p>6、将表中记录清空：</p>
+<pre><code class="mysql">DELETE FROM 表名;
+</code></pre>
+<p>7、往表中插入记录：</p>
+<pre><code class="mysql">INSERT INTO 表名 VALUES (&quot;hyq&quot;,&quot;M&quot;);
+</code></pre>
+<p>8、更新表中数据：</p>
+<pre><code class="mysql">UPDATE 表名 SET 字段名1=&#39;a&#39;,字段名2=&#39;b&#39; WHERE 字段名3=&#39;c&#39;;
+</code></pre>
+<p>9、用文本方式将数据装入数据表中：</p>
+<pre><code class="mysql">LOAD DATA LOCAL INFILE &quot;D:/mysql.txt&quot; INTO TABLE 表名;
+</code></pre>
+<p>10、导入.sql文件命令：</p>
+<pre><code class="mysql">USE 数据库名;
+SOURCE d:/mysql.sql;
+</code></pre>
+<p>11、命令行修改root密码：</p>
+<pre><code class="mysql">mysql&gt; USE mysql;
 
-class node implements Comparable&lt;node&gt;&#123;
-    int m;
-    int v;
-    double m_v;
-    node(int m,int v)&#123;
-        this.m=m;
-        this.v=v;
-        m_v=(double)v/(double)m;
-    &#125;
-    @Override
-    public int compareTo(node o) &#123;
-        node n=(node)o;
-        if(m_v&gt;n.m_v) &#123;
-            return -1;
-        &#125;else if(m_v&lt;n.m_v)&#123;
-            return 1;
-        &#125;else &#123;
-            return 0;
-        &#125;
-    &#125;
-&#125;
+以下方法适用于mysql5.6及以下版本，5.7以上版本会报错，因为5.7以上版本没有password字段，而是改成了authentication_string字段
 
-public class P2240 &#123;
-    
-    public static void main(String[] args) &#123;
-        // TODO Auto-generated method stub
-        Scanner input = new Scanner(System.in);
-        int n = input.nextInt();
-        int t = input.nextInt();
-        node[] arr =new node[n];
-        for(int i=0;i&lt;n;i++) &#123;
-            int a,b;
-            a=input.nextInt();
-            b=input.nextInt();
-            arr[i] = new node(a,b);
-        &#125;
-        Arrays.sort(arr, 0, n);
-        int i=0;
-        double value=0;
-        while(t&gt;0&amp;&amp;i&lt;n) &#123;
-            if(t&gt;arr[i].m) &#123;
-                value+=arr[i].v;
-                t-=arr[i].m;
-            &#125;else &#123;
-                value+=arr[i].m_v*t;
-                break;
-            &#125;
-            i++;
-        &#125;
-        System.out.printf(&quot;%.2f&quot;,value);
-    &#125;
-&#125;
+mysql&gt; UPDATE mysql.user SET password=PASSWORD(&#39;新密码&#39;) WHERE User=&#39;root&#39; AND Host = &#39;localhot&#39;;  # 方法一
+
+以下方法适用于5.7以上版本
+
+mysql&gt; UPDATE mysql.user SET authentication_string=PASSWORD(&#39;新密码&#39;) WHERE User=&#39;root&#39; AND Host = &#39;localhot&#39;;  # 方法一
+mysql&gt; FLUSH PRIVILEGES;
+
+mysql&gt; set password for &#39;root&#39;@&#39;localhost&#39; = password(&#39;新密码&#39;);  # 方法二
+mysql&gt; set password for root@&#39;%&#39; = password(&#39;新密码&#39;);  # 方法二
+
+mysql&gt; alter user &#39;root&#39;@&#39;%&#39; IDENTIFIED BY &#39;新密码&#39;;  # 方法三
+mysql&gt; alter user &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;新密码&#39;;  # 方法三
 </code></pre>
-<h3 id="二、Comparator"><a href="#二、Comparator" class="headerlink" title="二、Comparator"></a>二、Comparator</h3><p>强行对某个对象 collection进行整体排序的比较函数，可以将 Comparator 传递给 Collections.sort 或 Arrays.sort 。</p>
-<h4 id="1-导入模块-1"><a href="#1-导入模块-1" class="headerlink" title="1.导入模块"></a>1.导入模块</h4><pre><code class="java">import java.util.Arrays;
-import java.util.Comparator;
+<p>12、在数据表添加字段：</p>
+<pre><code class="mysql">ALTER TABLE `student` ADD `age` INT(4) COMMENT &#39;学生年龄&#39;;
 </code></pre>
-<h4 id="2-创建结构体"><a href="#2-创建结构体" class="headerlink" title="2.创建结构体"></a>2.创建结构体</h4><pre><code class="java">class node&#123;
-    int x, y;
-&#125;
+<p>13、在数据表删除字段：</p>
+<pre><code class="mysql">ALTER TABLE student DROP age;
 </code></pre>
-<h4 id="3-创建类mycmp继承接口Comparator"><a href="#3-创建类mycmp继承接口Comparator" class="headerlink" title="3.创建类mycmp继承接口Comparator"></a>3.创建类mycmp继承接口Comparator</h4><pre><code class="java">class mycmp implements Comparator&lt;node&gt;&#123;
-    public int compare(node o1, node o2) &#123;
-        if(o1.x == o2.x) 
-            return o1.y-o2.y;    //x值相等时，按照y值从小到大排序
-        else
-            return o1.x-o2.x;   //按照x值从小到大排序
-    &#125;
-&#125;
+<p>14、在数据表里修改字段名</p>
+<pre><code class="mysql">ALTER TABLE student CHANGE age age_changed INT(4);
 </code></pre>
-<h6 id="以上三步均在Main函数外"><a href="#以上三步均在Main函数外" class="headerlink" title="#以上三步均在Main函数外"></a>#以上三步均在Main函数外</h6><h4 id="3-在Main函数中创建node数组并初始化"><a href="#3-在Main函数中创建node数组并初始化" class="headerlink" title="3.在Main函数中创建node数组并初始化"></a>3.在Main函数中创建node数组并初始化</h4><pre><code class="java">node[] arr = new node[n];
-...
-//类对象必须初始化，分配空间
+<p>15、查看表结构</p>
+<pre><code class="mysql">SHOW CREATE TABLE ig_user;
 </code></pre>
-<h4 id="4-排序-1"><a href="#4-排序-1" class="headerlink" title="4.排序"></a>4.排序</h4><pre><code class="java">Arrays.sort(a, 0, n, new mycmp());
+<p>16、修改数据表表名</p>
+<pre><code class="mysql">ALTER TALBE ig_user RENAME TO ig_users;
 </code></pre>
-<p>#本文中Collections.sort 方法排序暂未给出说明。</p>
+<p>17、清空数据表字段内容：</p>
+<pre><code class="mysql">UPDATE table_name SET field_name = NULL;
+</code></pre>
+<p>18、添加PRIMARY KEY(主键索引)：</p>
+<pre><code class="mysql">ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` );
+</code></pre>
+<p>19、添加UNIQUE(唯一索引)：</p>
+<pre><code class="mysql">ALTER TABLE `table_name` ADD UNIQUE (`column`);
+</code></pre>
+<p>20、添加INDEX(普通索引)：</p>
+<pre><code class="mysql">ALTER TABLE `table_name` ADD INDEX index_name ( `column` );
+</code></pre>
+<p>21、添加FULLTEXT(全文索引)：</p>
+<pre><code class="mysql">ALTER TABLE `table_name` ADD FULLTEXT ( `column`);
+</code></pre>
+<p>22、添加多列索引：</p>
+<pre><code class="mysql">ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` );
+</code></pre>
+<p>23、复制旧表的数据到新表(假设两个表结构一样)：</p>
+<pre><code class="mysql">INSERT INTO 新表 SELECT * FROM 旧表;
+</code></pre>
+<p>24、复制旧表的数据到新表(假设两个表结构不一样)：</p>
+<pre><code class="mysql">INSERT INTO 新表(字段1,字段2,.......) SELECT 字段1,字段2,...... FROM 旧表;
+</code></pre>
+<p>25、复制表结构及数据到新表：</p>
+<pre><code class="mysql">SELECT * INTO 目标表名 FROM 源表名;（要求目标表不存在，因为在插入时会自动创建）
+</code></pre>
+<p>26、只复制表结构到新表：</p>
+<pre><code class="mysql">CREATE TABLE 新表 SELECT * FROM 旧表 WHERE 1=2; 即:让WHERE条件不成立.
+</code></pre>
+<p>27、创建外键：</p>
+<pre><code class="mysql">创建两张表，表引擎为 InnoDB 
+
+CREATE TABLE student
+(
+  id int (11) primary key auto_increment,
+  name char(255),sex char(255),
+  age int(11)
+) Engine = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci
+CREATE TABLE student_score
+(
+  id int (11) primary key auto_increment,
+  class char(255),score char(255),
+  student_id int(11)
+) Engine = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci
+
+添加外键，将 student_score 表的字段 student_id 设置为外键。s_id为外键名
+
+ALTER TABLE student_score ADD CONSTRAINT s_id FOREIGN KEY(student_id) REFERENCES student(id);
+</code></pre>
+<p>28、删除外键：</p>
+<pre><code class="mysql">ALTER TABLE 表名 DROP FOREIGN KEY 外键名;
+ALTER TABLE student_score DROP FOREIGN KEY s_id;
+</code></pre>
+<p>28、删除索引：</p>
+<h6 id="注：索引不能直接修改，只能通过先删除了，再重新添加"><a href="#注：索引不能直接修改，只能通过先删除了，再重新添加" class="headerlink" title="注：索引不能直接修改，只能通过先删除了，再重新添加"></a>注：索引不能直接修改，只能通过先删除了，再重新添加</h6><pre><code class="mysql">DROP INDEX &lt;索引名|index_name&gt; ON &lt;表名|table_name&gt;
+DROP INDEX sampleId ON sampleInfo;    
+DROP PRIMARY KEY ON &lt;表名&gt;    # 表示删除表中的主键。一个表只有一个主键，主键也是一个索引。
+DROP FOREIGN KEY fk_symbol ON &lt;表名|table_name&gt;    # 表示删除外键。
+</code></pre>
 
     </div>
     
