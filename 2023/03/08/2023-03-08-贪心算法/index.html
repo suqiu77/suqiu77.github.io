@@ -169,7 +169,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/ACM/" style="color: #00bcd4">
+                <a href="/tags/ACM/" style="color: #03a9f4">
                     ACM
                 </a>
             </span>
@@ -260,11 +260,11 @@ void knapsack(float M,float v[],float w[],float x[])
 &#125;
 </code></pre>
 <h4 id="3-活动选择问题"><a href="#3-活动选择问题" class="headerlink" title="3.活动选择问题"></a>3.活动选择问题</h4><p>这是《算法导论》上的例子，也是一个非常经典的问题。有n个需要在同一天使用同一个教室的活动a1,a2,…,an，教室同一时刻只能由一个活动使用。每个活动ai都有一个开始时间si和结束时间fi 。一旦被选择后，活动ai就占据半开时间区间[si,fi)。如果[si,fi]和[sj,fj]互不重叠，ai和aj两个活动就可以被安排在这一天。该问题就是要安排这些活动使得尽量多的活动能不冲突的举行。例如下图所示的活动集合S，其中各项活动按照结束时间单调递增排序。</p>
-<p><img src="/.com//01.jpg"></p>
+<p><img src="/.com//01.jpg" alt="图片"></p>
 <p>考虑使用贪心算法的解法。为了方便，我们用不同颜色的线条代表每个活动，线条的长度就是活动所占据的时间段，蓝色的线条表示我们已经选择的活动；红色的线条表示我们没有选择的活动。<br>如果我们每次都选择开始时间最早的活动，不能得到最优解：</p>
-<p><img src="/.com//02.jpg"></p>
+<p><img src="/.com//02.jpg" alt="图片"></p>
 <p>如果我们每次都选择持续时间最短的活动，不能得到最优解：</p>
-<p><img src="/.com//03.jpg"></p>
+<p><img src="/.com//03.jpg" alt="图片"></p>
 <p>可以用数学归纳法证明，我们的贪心策略应该是每次选取结束时间最早的活动。直观上也很好理解，按这种方法选择相容活动为未安排活动留下尽可能多的时间。这也是把各项活动按照结束时间单调递增排序的原因。</p>
 <pre><code class="c++">#include&lt;cstdio&gt;
 #include&lt;iostream&gt; 
@@ -358,7 +358,7 @@ int main()
                         <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2003 - 2023 suqiu77&#39;s blog
+            © 2003 - 2024 suqiu77&#39;s blog
             <span class="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
